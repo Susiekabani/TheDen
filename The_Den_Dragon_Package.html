@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Den - Dragon Briefing Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-navy: #1A3A52;
+            --accent-gold: #C9A961;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+            color: var(--dark-gray);
+            background-color: #FAFAFA;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--dark-navy);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        nav a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: rgba(201, 169, 97, 0.2);
+        }
+
+        nav li:last-child a {
+            border-right: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #0F1F2E 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero .divider {
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 20px auto 30px;
+        }
+
+        .hero .meta {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--accent-gold);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark-navy);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item-title {
+            font-weight: 700;
+            color: var(--dark-navy);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item-content {
+            flex: 1;
+        }
+
+        /* Dimensions Grid */
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .dimension-card {
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .dimension-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 16px rgba(201, 169, 97, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .dimension-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dimension-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-gold);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .dimension-card p {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* Scoring Guide */
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .scoring-table thead {
+            background-color: var(--dark-navy);
+        }
+
+        .scoring-table th {
+            color: var(--white);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .scoring-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .scoring-table tbody tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        .score-badge {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-gold);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Download Section */
+        .downloads {
+            background-color: var(--light-gray);
+            padding: 50px 0;
+            margin-top: 60px;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .download-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .download-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+        }
+
+        .download-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--dark-navy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: var(--accent-gold);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background-color: #FDF8F0;
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+
+        .callout strong {
+            color: var(--dark-navy);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                min-width: auto;
+            }
+
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .dimensions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Code Block */
+        code {
+            background-color: var(--light-gray);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        /* Emphasis */
+        .emphasis {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#journey">The Journey</a></li>
+            <li><a href="#dimensions">Dimensions</a></li>
+            <li><a href="#scoring">Scoring Guide</a></li>
+            <li><a href="#download">Documents</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>THE DEN</h1>
+            <div class="subtitle">Dragon Briefing Package</div>
+            <div class="divider"></div>
+            <p class="meta">Ismaili Professionals Network & Business Alliance</p>
+            <p class="meta" style="margin-top: 8px;">The Inaugural Event • 9th May 2026 • The Ismaili Centre, London</p>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview">
+        <div class="container">
+            <h2>Welcome, Dragons</h2>
+            
+            <p>This is a historic moment for the Ismaili Professionals Network &amp; Business Alliance. Today marks the <span class="emphasis">inaugural Den</span>—our most ambitious entrepreneurship initiative yet. You are witnessing the birth of a platform that will become a defining institution within our community.</p>
+
+            <p>We have gathered the most accomplished entrepreneurs, investors, and innovators from our network to sit as Dragons. Your presence, your judgment, and your mentorship will set the standard for excellence that future cohorts will aspire to.</p>
+
+            <h3>What is The Den?</h3>
+
+            <p>The Den is inspired by Dragon's Den—a platform where exceptional entrepreneurs pitch their vision to accomplished investors, industry leaders, and innovators. But The Den is distinctly ours. It's built on the principles that have always guided our community: <span class="emphasis">excellence, integrity, mutual support, and creating positive change</span>.</p>
+
+            <p>Unlike traditional pitch events, The Den is designed to:</p>
+            <ul>
+                <li>Spark genuine connections between founders and mentors</li>
+                <li>Provide rigorous but constructive feedback</li>
+                <li>Open doors to networks, mentorship, and strategic support</li>
+                <li>Raise founder visibility and credibility</li>
+                <li>Strengthen the entrepreneurial ecosystem within the Ismaili community</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Note on Investment:</strong> Dragons are neither expected nor required to invest during or after this event. If, at your discretion, you wish to explore investment opportunities with a finalist privately, any such discussions occur entirely outside The Den programme and in your personal capacity.
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey -->
+    <section id="journey" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2>The Journey to Today</h2>
+            <p style="margin-bottom: 40px;">Over four months, we conducted a rigorous selection process to identify exceptional founders worthy of standing before you today.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-title">Phase 1: Open Call &amp; Applications (November 2025)</div>
+                        <p>Entrepreneurs at all stages—from early idea to scaling venture—submitted comprehensive written applications covering their idea, problem, uniqueness, traction, impact, and vision. Deadline: 28th November 2025.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-title">Phase 2: Independent Judging (December 2025 – January 2026)</div>
+                        <p>A panel of independent judges—respected entrepreneurs, investors, and business leaders—scored all applications anonymously and objectively on a rigorous 0–5 scale across five equally weighted dimensions.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-title">Phase 3: Shortlisting (February – April 2026)</div>
+                        <p>Top-scoring applicants were invited to pitch live to you today. We ensured diversity of industry, stage, and impact to give you a range of exceptional founders.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <strong>These finalists have already impressed a rigorous panel of independent judges.</strong> You are seeing only the best.
+            </div>
+        </div>
+    </section>
+
+    <!-- Dimensions -->
+    <section id="dimensions">
+        <div class="container">
+            <h2>The 5 Evaluation Dimensions</h2>
+            <p style="margin-bottom: 40px;">You will score each founder on a 0–5 scale across five equally weighted dimensions. These are the same dimensions used in the independent judging phase.</p>
+
+            <div class="dimensions-grid">
+                <div class="dimension-card">
+                    <h4><span class="dimension-number">1</span>Idea &amp; Business (20%)</h4>
+                    <p><strong>What you assess:</strong></p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Clarity and memorability of pitch</li>
+                        <li>Reality and validation of problem</li>
+                        <li>Competitive differentiation</li>
+                    </ul>
+                </div>
+
+                <div class="dimension-card">
+                    <h4><span class="dimension-number">2</span>Progress &amp; Traction (20%)</h4>
+                    <p><strong>What you assess:</strong></p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Evidence of traction (revenue, customers, partnerships)</li>
+                        <li>Resilience and learning from challenges</li>
+                        <li>Momentum and market validation</li>
+                    </ul>
+                </div>
+
+                <div class="dimension-card">
+                    <h4><span class="dimension-number">3</span>Impact &amp; Responsibility (20%)</h4>
+                    <p><strong>What you assess:</strong></p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Social and community benefit</li>
+                        <li>Environmental and ethical responsibility</li>
+                        <li>Sustainability embedded in model</li>
+                    </ul>
+                </div>
+
+                <div class="dimension-card">
+                    <h4><span class="dimension-number">4</span>Support &amp; Vision (20%)</h4>
+                    <p><strong>What you assess:</strong></p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Strategic clarity of support needs</li>
+                        <li>12-month growth plan credibility</li>
+                        <li>Realistic milestones and metrics</li>
+                    </ul>
+                </div>
+
+                <div class="dimension-card">
+                    <h4><span class="dimension-number">5</span>The Founder (20%)</h4>
+                    <p><strong>What you assess:</strong></p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Domain expertise and credibility</li>
+                        <li>Genuine passion and authenticity</li>
+                        <li>Communication and coachability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scoring Guide -->
+    <section id="scoring" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2>Scoring Scale</h2>
+            <p>Score each dimension on a 0–5 scale. Here's what each score means across all dimensions:</p>
+
+            <table class="scoring-table">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Score</th>
+                        <th style="width: 90%;">Definition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="score-badge">5</span></td>
+                        <td><strong>Outstanding</strong> — Exceptional on this dimension. Strong evidence, clear articulation, compelling vision.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="score-badge">4</span></td>
+                        <td><strong>Strong</strong> — Very good on this dimension. Minor gaps but overall impressive.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="score-badge">3</span></td>
+                        <td><strong>Solid</strong> — Good fundamentals on this dimension. Missing depth in one area but credible.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="score-badge">2</span></td>
+                        <td><strong>Developing</strong> — Some promise but lacks clarity, evidence, or depth on this dimension.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="score-badge">1</span></td>
+                        <td><strong>Early Stage</strong> — Significant gaps or major issues on this dimension.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Key Principles</h3>
+            <ul>
+                <li><strong>A '3' is solid.</strong> It means the founder and business are credible and promising on that dimension.</li>
+                <li><strong>Early-stage is not a penalty.</strong> An idea-stage founder with exceptional vision can score higher than a revenue-stage founder lacking differentiation.</li>
+                <li><strong>All five dimensions are equally weighted.</strong> Don't favour one dimension more heavily.</li>
+                <li><strong>Your average score across all five dimensions = that founder's overall score.</strong></li>
+                <li><strong>These are the same founders independent judges already evaluated.</strong> Your scores reflect how they perform live vs. on paper.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+        <div class="container">
+            <h2>Your Documents</h2>
+            <p style="margin-bottom: 40px;">Below are all the resources you need to prepare and score fairly. Please download and review before the event.</p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <h4>Dragon Briefing Pack</h4>
+                    <p>Comprehensive briefing with context on The Den, the selection journey, and your role.</p>
+                    <a href="#" class="download-btn">Download (PDF)</a>
+                </div>
+
+                <div class="download-card">
+                    <h4>Scoring Rubric Explained</h4>
+                    <p>Detailed guide to each dimension with concrete examples of what each score looks like.</p>
+                    <a href="#" class="download-btn">Download (PDF)</a>
+                </div>
+
+                <div class="download-card">
+                    <h4>Dragon Scoresheet</h4>
+                    <p>Interactive Excel scoresheet with built-in criteria and scoring guide for easy reference during the event.</p>
+                    <a href="#" class="download-btn">Download (Excel)</a>
+                </div>
+
+                <div class="download-card">
+                    <h4>Event Overview &amp; Guide</h4>
+                    <p>Step-by-step playbook with sample probing questions and feedback coaching.</p>
+                    <a href="#" class="download-btn">Download (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>The Den</strong> • Inaugural Event • 9th May 2026</p>
+            <p style="margin-top: 12px; font-size: 13px;">Ismaili Professionals Network &amp; Business Alliance</p>
+            <p style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 12px;">We are committed to identifying, supporting, and empowering the next generation of entrepreneurs in our community.</p>
+        </div>
+    </footer>
+</body>
+</html>
